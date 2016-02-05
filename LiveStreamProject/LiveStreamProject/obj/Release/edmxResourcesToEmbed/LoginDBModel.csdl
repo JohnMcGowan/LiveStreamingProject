@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LiveStreamDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ProfileTBL">
+    <Key>
+      <PropertyRef Name="ProfileID" />
+    </Key>
+    <Property Name="ProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HouseName_Number" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Town_City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="County" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="D_O_B" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginTBL">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="UserID" Type="Guid" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="LiveStreamDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ProfileTBLs" EntityType="Self.ProfileTBL" />
+    <EntitySet Name="LoginTBLs" EntityType="Self.LoginTBL" />
+    <EntitySet Name="Tests" EntityType="LiveStreamDBModel.Test" />
+  </EntityContainer>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="Test1" />
+    </Key>
+    <Property Name="Test1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

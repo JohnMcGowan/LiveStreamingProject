@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Stream";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<h2>Stream</h2>
+
+<div>
+    <blockquote class="embedly-card" data-card-key="88277883c5554f32a5a5c6b2ce10b95c"><h4><a href="http://www.twitch.tv/ragnorocklg">RagnorockLG</a></h4><p>Saint Row 2 Start 2 Finish (SONS)</p></blockquote>
+    <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+</div>
+
+<div>
+    <h2>Chat :</h2>
+    <div id="PartialView" style="width: 50%; height: 200px; display:none;"></div>
+</div>
+
+@*<div>
+    <div id="partial2"></div>
+</div>*@
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.signalR-2.1.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="@Url.Content("~/Scripts/Chat.js")" type="text/javascript"></script>
+
+    @*<script type="text/javascript">
+        $('#partial2').load('_Chat');
+    </script>*@
+
+    <script type="text/javascript">
+        $.ajax({
+            url: '/Home/Chat',
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html'
+        })
+            .success(function (result) { $('#PartialView').html(result); })
+            .error(function (xhr, status) { alert(status) })
+    </script>
+}

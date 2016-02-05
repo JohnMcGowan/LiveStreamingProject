@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LiveStreamDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LoginTBL">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="UserID" Type="Guid" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProfileID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ProfileTBL" Relationship="Self.FK_LoginTBL_ProfileTBL" FromRole="LoginTBL" ToRole="ProfileTBL" />
+  </EntityType>
+  <EntityType Name="ProfileTBL">
+    <Key>
+      <PropertyRef Name="ProfileID" />
+    </Key>
+    <Property Name="ProfileID" Type="Int32" Nullable="false" />
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HouseName_Number" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Town_City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="County" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="D_O_B" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="LoginTBLs" Relationship="Self.FK_LoginTBL_ProfileTBL" FromRole="ProfileTBL" ToRole="LoginTBL" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_LoginTBL_ProfileTBL">
+    <End Role="ProfileTBL" Type="Self.ProfileTBL" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LoginTBL" Type="Self.LoginTBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileTBL">
+        <PropertyRef Name="ProfileID" />
+      </Principal>
+      <Dependent Role="LoginTBL">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LiveStreamDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LoginTBLs" EntityType="Self.LoginTBL" />
+    <EntitySet Name="ProfileTBLs" EntityType="Self.ProfileTBL" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+    <AssociationSet Name="FK_LoginTBL_ProfileTBL" Association="Self.FK_LoginTBL_ProfileTBL">
+      <End Role="ProfileTBL" EntitySet="ProfileTBLs" />
+      <End Role="LoginTBL" EntitySet="LoginTBLs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

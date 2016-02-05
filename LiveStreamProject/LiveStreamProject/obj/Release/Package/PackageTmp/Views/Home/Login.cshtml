@@ -1,0 +1,27 @@
+﻿@model LiveStreamProject.Models.UserModelcs
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Login failed : check your login details")
+
+    <div>
+        <fieldset>
+        <legend>Login Form :</legend>
+            <div>@Html.LabelFor(u => u.Email)</div>
+            <div>@Html.TextBoxFor(u => u.Email)</div>
+            <div>@Html.ValidationMessageFor(u => u.Email)</div>
+
+            <div>@Html.LabelFor(u => u.Password)</div>
+            <div>@Html.PasswordFor(u => u.Password)</div>
+            <div>@Html.ValidationMessageFor(u => u.Password)</div>
+
+            <input type="submit" value="Log In" />
+        </fieldset>
+    </div>
+}
+
