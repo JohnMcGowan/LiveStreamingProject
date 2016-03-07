@@ -1,6 +1,9 @@
 ﻿using LiveStreamProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
@@ -66,49 +69,51 @@ namespace LiveStreamProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                    //try { 
+                //try { 
 
-                    var crypto = new SimpleCrypto.PBKDF2();
-                    var encrypt = crypto.Compute(user.Password);
-                    var sysuser = DB.LoginTBLs.Create();
+                var crypto = new SimpleCrypto.PBKDF2();
+                var encrypt = crypto.Compute(user.Password);
+                var sysuser = DB.LoginTBLs.Create();
 
-                    sysuser.UserID = Guid.NewGuid();
-                    sysuser.Email = user.Email;
-                    sysuser.Password = encrypt;
-                    sysuser.Password = crypto.Salt;
-                    sysuser.UserType = UserModelcs.UserTypes.User.ToString();
+                sysuser.UserID = Guid.NewGuid();
+                sysuser.Email = user.Email;
+                sysuser.Password = encrypt;
+                sysuser.Password = crypto.Salt;
+                sysuser.UserType = UserModelcs.UserTypes.User.ToString();
 
-                    DB.LoginTBLs.Add(sysuser);
+                DB.LoginTBLs.Add(sysuser);
 
-                    //var profile = DB.ProfileTBLs.Create();
+                //var profile = DB.ProfileTBLs.Create();
 
-                    //profile.Created = DateTime.Now;
-                    //profile.IsActive = true;
+                //profile.Created = DateTime.Now;
+                //profile.IsActive = true;
 
-                    //DB.ProfileTBLs.Add(profile);
-                    DB.SaveChanges();
-                    //}
-                    //catch (DbEntityValidationException dbEx)
-                    //{
-                    //    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    //    {
-                    //        foreach (var validationError in validationErrors.ValidationErrors)
-                    //        {
-                    //            Trace.TraceInformation("Property: {0} Error: {1}",
-                    //                                    validationError.PropertyName,
-                    //                                    validationError.ErrorMessage);
-                    //        }
-                    //    }
-                    //}
+                //DB.ProfileTBLs.Add(profile);
 
-                    //int ID = (from i in DB.ProfileTBLs select i.ProfileID).Last();
+                DB.SaveChanges();
 
-                    //string querystr = "UPDATE LoginTBL SET ProfileID=@ID WHERE Email=@sysuser.UserID";
+                //}
+                //catch (DbEntityValidationException dbEx)
+                //{
+                //    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                //    {
+                //        foreach (var validationError in validationErrors.ValidationErrors)
+                //        {
+                //            Trace.TraceInformation("Property: {0} Error: {1}",
+                //                                    validationError.PropertyName,
+                //                                    validationError.ErrorMessage);
+                //        }
+                //    }
+                //}
 
-                    //DB.ProfileTBLs.SqlQuery(querystr);
-                    //DB.SaveChanges();
+                //int ID = (from i in DB.ProfileTBLs select i.ProfileID).Last();
 
-                    return RedirectToAction("Index", "Home");               
+                //string querystr = "UPDATE LoginTBL SET ProfileID=@ID WHERE Email=@sysuser.UserID";
+
+                //DB.ProfileTBLs.SqlQuery(querystr);
+                //DB.SaveChanges();
+
+                return RedirectToAction("Index", "Home");
             }
             return View(user);
         }
@@ -135,7 +140,7 @@ namespace LiveStreamProject.Controllers
             DB.SaveChanges();
 
             return RedirectToAction("Index", "Home");
-        
+
         }
 
         public ActionResult Stream()
@@ -152,6 +157,7 @@ namespace LiveStreamProject.Controllers
         {
             return View();
         }
+
 
         private bool IsValid(string email, string password)
         {

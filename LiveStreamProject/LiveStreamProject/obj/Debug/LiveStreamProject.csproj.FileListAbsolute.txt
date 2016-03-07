@@ -54,3 +54,5 @@ C:\Users\John Mc Gowan\Desktop\LiveStreamingProject\LiveStreamProject\LiveStream
 C:\Users\John Mc Gowan\Desktop\LiveStreamingProject\LiveStreamProject\LiveStreamProject\bin\Microsoft.Owin.xml
 C:\Users\John Mc Gowan\Desktop\LiveStreamingProject\LiveStreamProject\LiveStreamProject\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\John Mc Gowan\Desktop\LiveStreamingProject\LiveStreamProject\LiveStreamProject\bin\Microsoft.Owin.Security.xml
+C:\Users\John Mc Gowan\Desktop\LiveStreamingProject\LiveStreamProject\LiveStreamProject\bin\OptimizationHelper.dll
+C:\Users\John Mc Gowan\Desktop\LiveStreamingProject\LiveStreamProject\LiveStreamProject\bin\OptimizationHelper.xml

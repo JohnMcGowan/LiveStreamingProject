@@ -6,10 +6,16 @@
 
 <h2>Stream</h2>
 
+@*<div>
+        <blockquote class="embedly-card" data-card-key="88277883c5554f32a5a5c6b2ce10b95c"><h4><a href="http://www.twitch.tv/ragnorocklg">RagnorockLG</a></h4><p>Saint Row 2 Start 2 Finish (SONS)</p></blockquote>
+        <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+    </div>*@
+
 <div>
-    <blockquote class="embedly-card" data-card-key="88277883c5554f32a5a5c6b2ce10b95c"><h4><a href="http://www.twitch.tv/ragnorocklg">RagnorockLG</a></h4><p>Saint Row 2 Start 2 Finish (SONS)</p></blockquote>
-    <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+    http://mediastream.streaming.mediaservices.windows.net/9f0a6040-a448-4c90-aafb-59f83321cc46/f9bb5e82-241f-4c2e-b513-90e40ab29816.ism/Manifest
 </div>
+
+<video id="videoplayer" controls></video>
 
 <div>
     <h2>Chat :</h2>
@@ -17,8 +23,8 @@
 </div>
 
 @*<div>
-    <div id="partial2"></div>
-</div>*@
+        <div id="partial2"></div>
+    </div>*@
 
 @section scripts
 {
@@ -27,8 +33,19 @@
     <script src="@Url.Content("~/Scripts/Chat.js")" type="text/javascript"></script>
 
     @*<script type="text/javascript">
-        $('#partial2').load('_Chat');
-    </script>*@
+            $('#partial2').load('_Chat');
+        </script>*@
+    <script>
+        // setup the video element and attach it to the Dash player
+        function setupVideo() {
+            var url = "http://mediastream.streaming.mediaservices.windows.net/9f0a6040-a448-4c90-aafb-59f83321cc46/f9bb5e82-241f-4c2e-b513-90e40ab29816.ism/Manifest(format=mpd-time-csf)";
+            var context = new Dash.di.DashContext();
+            var player = new MediaPlayer(context);
+            player.startup();
+            player.attachView(document.querySelector("#videoplayer"));
+            player.attachSource(url);
+        }
+    </script>
 
     <script type="text/javascript">
         $.ajax({

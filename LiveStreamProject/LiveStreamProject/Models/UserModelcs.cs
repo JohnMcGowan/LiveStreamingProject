@@ -22,7 +22,6 @@ namespace LiveStreamProject.Models
 
         public enum UserTypes { Admin, User };
 
-        [Required]
         [EnumDataType(typeof(UserTypes))]
         public UserTypes UserType { get; set; }
     }

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="LiveStreamProject20160131040905" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\John\ Mc\ Gowan\\Desktop\\LiveStreamingProject\\LiveStreamProject\\LiveStreamProject\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\John\ Mc\ Gowan\\Desktop\\LiveStreamingProject\\LiveStreamProject\\LiveStreamProject\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="LiveStreamDBEntities-Web.config Connection String" description="" value="metadata=res://*/LoginDBModel.csdl|res://*/LoginDBModel.ssdl|res://*/LoginDBModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=livestreamdb.database.windows.net;Initial Catalog=LiveStreamDB;Persist Security Info=True;User ID=JohnMcGowan;Password=Titan1987;Application Name=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\John\ Mc\ Gowan\\Desktop\\LiveStreamingProject\\LiveStreamProject\\LiveStreamProject\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LiveStreamDBEntities']/@connectionString" />
+  </parameter>
+</parameters>
